@@ -101,7 +101,7 @@ final class VideoGameFixtures extends Fixture implements DependentFixtureInterfa
     {
         $review = (new Review())
             ->setComment($this->faker->paragraph())
-            ->setRating(random_int(0, 5))
+            ->setRating(random_int(1, 5))
             ->setVideoGame($videoGame)
             ->setUser($user);
         return $review;
