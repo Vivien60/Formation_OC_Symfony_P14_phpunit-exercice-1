@@ -43,6 +43,9 @@ class NoteCalculatorTest extends \PHPUnit\Framework\TestCase
             'numberOfFour' => 0,
             'numberOfFive' => 0,
         ];
+
+        //plusieurs revues, qui créé un ensemble où
+        // chaque note est répétée un nombre variable de fois
         $manyReviews = [
             new Review()->setRating(1),
             new Review()->setRating(1),
@@ -66,19 +69,47 @@ class NoteCalculatorTest extends \PHPUnit\Framework\TestCase
             ])
         ];
 
-        $onlyOneReview = [ new Review()->setRating(2) ];
-        $onlyOneReviewExpectation = [
-            $onlyOneReview,
-            array_merge($expectedRepartition, ['numberOfTwo' => 1])
-        ];
+        //un ensemble par note comprenant une seule revue avec cette note
+        $onlyOneReviewExpectation = [];
+        foreach(range(1, 5) as $note) {
+            $expectedRepartitionTmp = $expectedRepartition;
+            $expectedRepartitionTmp[array_keys($expectedRepartitionTmp)[$note - 1]] = 1;
+            $onlyOneReviewExpectation["only one review with $note"] = [
+                [new Review()->setRating($note)],
+                $expectedRepartitionTmp
+            ];
+        }
 
         $noReview = [];
         $noReviewExpectation = [$noReview, $expectedRepartition];
 
         return [
             "many reviews" => $manyReviewsExpectation,
-            "only one review" => $onlyOneReviewExpectation,
-            "no review" => $noReviewExpectation
+            "no review" => $noReviewExpectation,
+            ...$onlyOneReviewExpectation,
+            "two reviews" => [
+                [
+                    new Review()->setRating(1),
+                    new Review()->setRating(2),
+                ],
+                array_merge($expectedRepartition, [
+                    'numberOfOne' => 1,
+                    'numberOfTwo' => 1,
+                ]),
+            ],
+
+            "three reviews" => [
+                [
+                    new Review()->setRating(1),
+                    new Review()->setRating(2),
+                    new Review()->setRating(3),
+                ],
+                array_merge($expectedRepartition, [
+                    'numberOfOne' => 1,
+                    'numberOfTwo' => 1,
+                    'numberOfThree' => 1,
+                ]),
+            ],
         ];
     }
 
