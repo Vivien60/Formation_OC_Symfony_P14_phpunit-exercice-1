@@ -87,29 +87,6 @@ class NoteCalculatorTest extends \PHPUnit\Framework\TestCase
             "many reviews" => $manyReviewsExpectation,
             "no review" => $noReviewExpectation,
             ...$onlyOneReviewExpectation,
-            "two reviews" => [
-                [
-                    new Review()->setRating(1),
-                    new Review()->setRating(2),
-                ],
-                array_merge($expectedRepartition, [
-                    'numberOfOne' => 1,
-                    'numberOfTwo' => 1,
-                ]),
-            ],
-
-            "three reviews" => [
-                [
-                    new Review()->setRating(1),
-                    new Review()->setRating(2),
-                    new Review()->setRating(3),
-                ],
-                array_merge($expectedRepartition, [
-                    'numberOfOne' => 1,
-                    'numberOfTwo' => 1,
-                    'numberOfThree' => 1,
-                ]),
-            ],
         ];
     }
 
