@@ -22,3 +22,4 @@ php.local.ini
 ###< symfony/asset-mapper ###
 /.idea/
 /config/secrets/test/
+/public/test-coverage/
