@@ -62,18 +62,20 @@ final class VideoGameFixtures extends Fixture implements DependentFixtureInterfa
         return $videoGames;
     }
 
-    /**
-     * @return void
-     * @throws \Random\RandomException
-     */
     protected function addTagsToVideoGames(array $videoGames, array $tags, int $nbTagsByVideoGame = 2): void
     {
-        $maxIndex = count($tags) - 1;
-        foreach ($videoGames as $videoGame) {
-            for ($j = 0; $j < $nbTagsByVideoGame; $j++) {
-                $videoGame->getTags()->add($tags[random_int(0, $maxIndex)]);
+//        $maxIndex = count($tags) - 1;
+//        foreach ($videoGames as $videoGame) {
+//            for ($j = 0; $j < $nbTagsByVideoGame; $j++) {
+//                $videoGame->getTags()->add($tags[random_int(0, $maxIndex)]);
+//            }
+//        }
+        //Attache un tag à 10 jeux et un jeu à 5 tags
+        array_walk($videoGames, static function (VideoGame $videoGame, int $index) use ($tags) {
+            for ($tagIndex = 0; $tagIndex < 5; $tagIndex++) {
+                $videoGame->getTags()->add($tags[($index + $tagIndex) % count($tags)]);
             }
-        }
+        });
     }
 
     /**

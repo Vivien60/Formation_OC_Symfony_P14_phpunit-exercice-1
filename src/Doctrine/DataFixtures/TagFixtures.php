@@ -9,6 +9,7 @@ use Faker\Generator;
 
 final class TagFixtures extends Fixture
 {
+    const int NB_TO_CREATE = 25;
     public function __construct(
         private readonly Generator $faker,
     ) {
@@ -18,8 +19,7 @@ final class TagFixtures extends Fixture
     {
 
         //création de tags
-        $nbTagsToCreate = VideoGameFixtures::NB_TO_CREATE * 2;
-        $tags = $this->loadTags($nbTagsToCreate);
+        $tags = $this->loadTags(self::NB_TO_CREATE);
 
         //persistence
         array_walk($tags, [$manager, 'persist']);
