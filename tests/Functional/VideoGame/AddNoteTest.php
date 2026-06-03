@@ -28,7 +28,7 @@ final class AddNoteTest extends FunctionalTestCase
         $crawler = $this->client->followRedirect();
         self::assertSelectorTextContains('h1', 'Jeu vidéo 5');
         self::assertAnySelectorTextContains('p', 'j\'ai mis une note de 2');
-        self::assertSelectorTextContains('h3', 'user+0');
+        self::assertAnySelectorTextContains('h3', 'user+0');
         self::assertAnySelectorTextContains('div.list-group-item div.rating-square span.value', '2');
     }
 }

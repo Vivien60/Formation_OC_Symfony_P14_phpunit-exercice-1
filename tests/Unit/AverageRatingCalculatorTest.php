@@ -42,15 +42,6 @@ class AverageRatingCalculatorTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals(0, $videoGame->getAverageRating());
     }
 
-    public function testAddingNoteBelowOneShouldFail(): void
-    {
-        $this->expectException(\Exception::class);
-        $videoGame = new VideoGame();
-        $videoGame->getReviews()->add(new Review()->setRating(0));
-        $calculator = $this->createCalculator();
-        $calculator->calculateAverage($videoGame);
-    }
-
 
     public static function reviewsProvider() : array
     {

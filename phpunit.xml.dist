@@ -29,6 +29,9 @@
         <include>
             <directory>src</directory>
         </include>
+        <exclude>
+            <directory>src/Doctrine/DataFixtures</directory>
+        </exclude>
     </source>
 
     <coverage pathCoverage="true">

@@ -8,4 +8,7 @@ test: db-test
 	php bin/phpunit --testdox --coverage-html "public/test-coverage/"  --filter tests
 
 test-unit: db-test
-	php bin/phpunit --testdox --coverage-html "public/test-coverage/"  --filter Unit 2>/dev/null
+	php bin/phpunit --testdox --coverage-html "public/test-coverage/"  --filter Unit
+
+test-config-github-actions:
+	 time act --pull=false -j symfony-tests --container-options "--user 0"
