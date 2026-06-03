@@ -123,7 +123,7 @@ final class VideoGameFixtures extends Fixture implements DependentFixtureInterfa
      */
     protected function getRandomUser(array $users): User
     {
-        $randomIndex = random_int(0, count($users) - 1);
+        $randomIndex = random_int(1, count($users) - 1);
         return $users[$randomIndex];
     }
 
