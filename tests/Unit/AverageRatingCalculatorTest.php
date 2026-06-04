@@ -11,7 +11,6 @@ use App\Rating\RatingHandler;
 
 class AverageRatingCalculatorTest extends \PHPUnit\Framework\TestCase
 {
-
     private function createCalculator(): CalculateAverageRating
     {
         return new RatingHandler();
@@ -42,8 +41,7 @@ class AverageRatingCalculatorTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals(0, $videoGame->getAverageRating());
     }
 
-
-    public static function reviewsProvider() : array
+    public static function reviewsProvider(): array
     {
         $manyReviews = [
             new Review()->setRating(1),
@@ -52,12 +50,12 @@ class AverageRatingCalculatorTest extends \PHPUnit\Framework\TestCase
         ];
         $manyReviewsExpectation = [$manyReviews, 3];
 
-        $onlyOneReview = [ new Review()->setRating(2) ];
+        $onlyOneReview = [new Review()->setRating(2)];
         $onlyOneReviewExpectation = [$onlyOneReview, 2];
 
         return [
-            "many reviews" =>  $manyReviewsExpectation,
-            "only one review" => $onlyOneReviewExpectation
+            'many reviews' => $manyReviewsExpectation,
+            'only one review' => $onlyOneReviewExpectation,
         ];
     }
 }

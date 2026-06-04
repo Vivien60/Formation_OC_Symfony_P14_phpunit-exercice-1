@@ -46,6 +46,7 @@
     "config": {
         "allow-plugins": {
             "php-http/discovery": true,
+            "phpstan/extension-installer": true,
             "symfony/flex": true,
             "symfony/runtime": true
         },
@@ -114,6 +115,12 @@
     "require-dev": {
         "doctrine/doctrine-fixtures-bundle": "^3.5",
         "fakerphp/faker": "^1.23",
+        "friendsofphp/php-cs-fixer": "^3.95",
+        "phpstan/extension-installer": "^1.4",
+        "phpstan/phpstan": "^2.2",
+        "phpstan/phpstan-doctrine": "^2.0",
+        "phpstan/phpstan-phpunit": "^2.0",
+        "phpstan/phpstan-symfony": "^2.0",
         "phpunit/phpunit": "^10",
         "symfony/browser-kit": "6.4.*",
         "symfony/css-selector": "6.4.*",

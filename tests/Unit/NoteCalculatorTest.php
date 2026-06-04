@@ -12,8 +12,7 @@ use App\Rating\RatingHandler;
 
 class NoteCalculatorTest extends \PHPUnit\Framework\TestCase
 {
-
-    private function createCalculator() : CountRatingsPerValue
+    private function createCalculator(): CountRatingsPerValue
     {
         return new RatingHandler();
     }
@@ -34,7 +33,7 @@ class NoteCalculatorTest extends \PHPUnit\Framework\TestCase
         $this->assertCountRatesPerValueEquals($expectedRepartition, $videoGame->getNumberOfRatingsPerValue());
     }
 
-    public static function reviewsProvider() : array
+    public static function reviewsProvider(): array
     {
         $expectedRepartition = [
             'numberOfOne' => 0,
@@ -44,7 +43,7 @@ class NoteCalculatorTest extends \PHPUnit\Framework\TestCase
             'numberOfFive' => 0,
         ];
 
-        //plusieurs revues, qui créé un ensemble où
+        // plusieurs revues, qui créé un ensemble où
         // chaque note est répétée un nombre variable de fois
         $manyReviews = [
             new Review()->setRating(1),
@@ -66,17 +65,17 @@ class NoteCalculatorTest extends \PHPUnit\Framework\TestCase
                 'numberOfThree' => 3,
                 'numberOfFour' => 2,
                 'numberOfFive' => 1,
-            ])
+            ]),
         ];
 
-        //un ensemble par note comprenant une seule revue avec cette note
+        // un ensemble par note comprenant une seule revue avec cette note
         $onlyOneReviewExpectation = [];
-        foreach(range(1, 5) as $note) {
+        foreach (range(1, 5) as $note) {
             $expectedRepartitionTmp = $expectedRepartition;
             $expectedRepartitionTmp[array_keys($expectedRepartitionTmp)[$note - 1]] = 1;
             $onlyOneReviewExpectation["only one review with $note"] = [
                 [new Review()->setRating($note)],
-                $expectedRepartitionTmp
+                $expectedRepartitionTmp,
             ];
         }
 
@@ -84,16 +83,16 @@ class NoteCalculatorTest extends \PHPUnit\Framework\TestCase
         $noReviewExpectation = [$noReview, $expectedRepartition];
 
         return [
-            "many reviews" => $manyReviewsExpectation,
-            "no review" => $noReviewExpectation,
+            'many reviews' => $manyReviewsExpectation,
+            'no review' => $noReviewExpectation,
             ...$onlyOneReviewExpectation,
         ];
     }
 
     private function assertCountRatesPerValueEquals(
         $expected,
-        NumberOfRatingPerValue $nbRatingsPerValue
-    ) : void {
+        NumberOfRatingPerValue $nbRatingsPerValue,
+    ): void {
         self::assertTrue(
             $expected['numberOfOne'] === $nbRatingsPerValue->getNumberOfOne()
             && $expected['numberOfTwo'] === $nbRatingsPerValue->getNumberOfTwo()

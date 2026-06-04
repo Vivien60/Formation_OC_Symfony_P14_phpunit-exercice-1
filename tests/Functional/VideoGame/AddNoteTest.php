@@ -11,19 +11,19 @@ final class AddNoteTest extends FunctionalTestCase
 {
     public function testShouldAddNote(): void
     {
-        //s'authentifier
+        // s'authentifier
         $this->login('user+0@email.com');
-        //Faire la requête
+        // Faire la requête
         $this->get('/jeu-video-5');
         self::assertResponseIsSuccessful();
-        //Récupérer le formulaire
+        // Récupérer le formulaire
         $form = $this->client->getCrawler()->selectButton('Poster')->form();
-        //Intégrer des données dans le formulaire
-        $form['review[rating]'] = 2;
+        // Intégrer des données dans le formulaire
+        $form['review[rating]'] = '2';
         $form['review[comment]'] = "j'ai mis une note de 2";
-        //Soumettre le formulaire
+        // Soumettre le formulaire
         $this->client->submit($form);
-        //Vérifier la réponse
+        // Vérifier la réponse
         $this->assertResponseStatusCodeSame(Response::HTTP_FOUND);
         $crawler = $this->client->followRedirect();
         self::assertSelectorTextContains('h1', 'Jeu vidéo 5');
