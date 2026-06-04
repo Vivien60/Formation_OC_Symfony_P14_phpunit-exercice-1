@@ -27,7 +27,9 @@ abstract class FunctionalTestCase extends WebTestCase
 
     /**
      * @template T
+     *
      * @param class-string<T> $id
+     *
      * @return T of object
      */
     protected function service(string $id)

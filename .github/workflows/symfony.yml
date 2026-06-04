@@ -65,5 +65,11 @@ jobs:
     - name: generate SASS
       run: php bin/console sass:build
 
+    - name: Check code style
+      run: vendor/bin/php-cs-fixer check --diff --sequential
+
+    - name: Check for bugs with PHPStan
+      run: vendor/bin/phpstan analyse -c phpstan.dist.neon
+
     - name: Execute tests (Unit and Feature tests) via PHPUnit
       run: make test

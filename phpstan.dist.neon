@@ -27,7 +27,9 @@ parameters:
         analyseAndScan:
             - vendor/*
             - var/cache/*
-            - tests/bootstrap.php
 
     # Ignorer certaines erreurs (optionnel)
     ignoreErrors:
+          -
+              identifier: function.alreadyNarrowedType
+              path: tests/bootstrap.php
