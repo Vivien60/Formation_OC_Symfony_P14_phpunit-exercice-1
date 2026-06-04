@@ -10,5 +10,8 @@ test: db-test
 test-unit: db-test
 	php bin/phpunit --testdox --coverage-html "public/test-coverage/"  --filter Unit
 
+test-no-coverage: db-test
+	php bin/phpunit --testdox --filter tests --no-coverage
+
 test-config-github-actions:
 	 time act --pull=false -j symfony-tests --container-options "--user 0"

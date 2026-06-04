@@ -19,7 +19,7 @@ final class AddNoteTest extends FunctionalTestCase
         //Récupérer le formulaire
         $form = $this->client->getCrawler()->selectButton('Poster')->form();
         //Intégrer des données dans le formulaire
-        $form['review[rating]'] = 2;
+        $form['review[rating]'] = "2";
         $form['review[comment]'] = "j'ai mis une note de 2";
         //Soumettre le formulaire
         $this->client->submit($form);
